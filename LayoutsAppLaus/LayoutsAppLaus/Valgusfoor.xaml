@@ -4,18 +4,21 @@
              x:Class="LayoutsAppLaus.Valgusfoor">
     <ContentPage.Content>
         <StackLayout>
-            <Frame x:Name="Punane" CornerRadius="120" BackgroundColor="#FF0000" 
+            <Frame BackgroundColor="#2196F3" Padding="10">
+                <Label Text="Valgusfoor" HorizontalTextAlignment="Left" TextColor="White" FontSize="Large" FontAttributes="Bold"/>
+            </Frame>
+            <Frame x:Name="Punane" CornerRadius="120" BackgroundColor="Gray" 
                      VerticalOptions="FillAndExpand" 
                      HorizontalOptions="FillAndExpand" 
-                     Margin="80,15,80,0"/>
-            <Frame x:Name="Kollane" CornerRadius="120" BackgroundColor="#FFBE00"
+                     Margin="80,7.5,80,0"/>
+            <Frame x:Name="Kollane" CornerRadius="120" BackgroundColor="Gray"
                      VerticalOptions="FillAndExpand" 
                      HorizontalOptions="FillAndExpand"
                      Margin="80,0,80,0"/>
-            <Frame x:Name="Roheline" CornerRadius="120" BackgroundColor="#119806"
+            <Frame x:Name="Roheline" CornerRadius="120" BackgroundColor="Gray"
                      VerticalOptions="FillAndExpand" 
                      HorizontalOptions="FillAndExpand"
-                     Margin="80,0,80,15"/>
+                     Margin="80,0,80,7.5"/>
             <StackLayout Orientation="Horizontal" HeightRequest="65">
                 <Button x:Name="onButton"  Text="ВКЛ" 
                         HorizontalOptions="FillAndExpand" 
