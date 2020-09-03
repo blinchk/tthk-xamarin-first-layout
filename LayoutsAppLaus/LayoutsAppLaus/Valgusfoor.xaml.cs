@@ -38,7 +38,6 @@ namespace LayoutsAppLaus
         {
             setNone();
             Roheline.BackgroundColor = Color.Green;
-
         }
 
         private void onButton_Clicked(object sender, EventArgs e) // кнопка включения
