@@ -11,7 +11,7 @@
                    HorizontalTextAlignment="Center" 
                    VerticalTextAlignment="Center"
                    FontSize="Medium"
-                   Margin="0,15"/>
+                   Margin="15,15"/>
             <StackLayout Orientation="Horizontal">
                 <Button x:Name="btn" Text="Click me!"
                     FontSize="Medium" BorderColor="#3287E8"

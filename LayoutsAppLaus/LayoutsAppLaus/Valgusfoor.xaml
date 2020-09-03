@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LayoutsAppLaus.Valgusfoor">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame x:Name="Punane" CornerRadius="120" BackgroundColor="#FF0000" 
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand" 
+                     Margin="80,15,80,0"/>
+            <Frame x:Name="Kollane" CornerRadius="120" BackgroundColor="#FFBE00"
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand"
+                     Margin="80,0,80,0"/>
+            <Frame x:Name="Roheline" CornerRadius="120" BackgroundColor="#119806"
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand"
+                     Margin="80,0,80,15"/>
+            <StackLayout Orientation="Horizontal" HeightRequest="65">
+                <Button x:Name="onButton"  Text="ВКЛ" 
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand" 
+                        Clicked="onButton_Clicked" />
+                <Button x:Name="offButton" Text="ВЫКЛ" 
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="FillAndExpand"
+                        Clicked="offButton_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
