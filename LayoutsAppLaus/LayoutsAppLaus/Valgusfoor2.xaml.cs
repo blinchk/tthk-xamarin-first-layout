@@ -14,6 +14,7 @@ namespace LayoutsAppLaus
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Valgusfoor2 : ContentPage
     {
+        internal bool isEnableVf;
         public Valgusfoor2()
         {
             //   InitializeComponent();
@@ -74,9 +75,6 @@ namespace LayoutsAppLaus
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
 
-            /* onButton.Clicked += OnButton_Clicked;
-            offButton.Clicked += OffButton_Clicked; */
-
             StackLayout buttonsLayout = new StackLayout()
             {
                 Orientation = StackOrientation.Horizontal,
@@ -91,10 +89,9 @@ namespace LayoutsAppLaus
 
             Content = commonLayout;
 
+            onButton.Clicked += OnButton_Clicked;
+            offButton.Clicked += OffButton_Clicked;
         }
-
-        /* 
-         * Я это допишу
         private void setNone()
         {
             punane.BackgroundColor = Color.Gray;
@@ -149,6 +146,5 @@ namespace LayoutsAppLaus
             }
             throw new NotImplementedException();
         }
-        */
     }
 }
