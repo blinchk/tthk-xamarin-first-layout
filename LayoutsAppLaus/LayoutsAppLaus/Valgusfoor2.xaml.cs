@@ -60,35 +60,25 @@ namespace LayoutsAppLaus
                 VerticalOptions = LayoutOptions.Center
             };
 
-            punane = new Frame()
-            {
-                Content = punaneText,
-                CornerRadius = 120,
-                BackgroundColor = Color.Gray,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Margin = new Thickness(80, 7.5, 80, 0)
-            };
+            Frame[] frames = new Frame[3];
+            Label[] contents = new Label[] { punaneText, kollaneText, rohelineText };
 
-            kollane = new Frame()
+            for(int i = 0; i < 3; i++)
             {
-                Content = kollaneText,
-                CornerRadius = 120,
-                BackgroundColor = Color.Gray,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Margin = new Thickness(80, 7.5, 80, 0)
-            };
+                frames[i] = new Frame()
+                {
+                    Content = contents[i],
+                    CornerRadius = 120,
+                    BackgroundColor = Color.Gray,
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    Margin = new Thickness(80, 7.5, 80, 0)
+                };
+            }
 
-            roheline = new Frame()
-            {
-                Content = rohelineText,
-                CornerRadius = 120,
-                BackgroundColor = Color.Gray,
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                Margin = new Thickness(80, 0, 80, 7.5)
-            };
+            punane = frames[0];
+            kollane = frames[1];
+            roheline = frames[2];
 
             onButton = new Button()
             {
