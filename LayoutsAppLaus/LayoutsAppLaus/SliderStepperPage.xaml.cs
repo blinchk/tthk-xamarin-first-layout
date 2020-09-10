@@ -93,7 +93,6 @@ namespace LayoutsAppLaus
             RandomColorButton = new Button()
             {
                 Text = "Случайный цвет",
-                FontAttributes = FontAttributes.Italic,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 FontSize = 20
             };
