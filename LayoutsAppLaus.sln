@@ -7,7 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutsAppLaus.Android", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutsAppLaus.iOS", "LayoutsAppLaus\LayoutsAppLaus.iOS\LayoutsAppLaus.iOS.csproj", "{1435A416-475B-4871-B01C-303D6E0B3748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutsAppLaus", "LayoutsAppLaus\LayoutsAppLaus\LayoutsAppLaus.csproj", "{8788259C-0D5B-441D-BA5D-222CD46E4911}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LayoutsAppLaus", "LayoutsAppLaus\LayoutsAppLaus\LayoutsAppLaus.csproj", "{8788259C-0D5B-441D-BA5D-222CD46E4911}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{91E4E6DE-C2FB-4109-B6AF-EB5BFB29B493}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0169: Поле "SliderStepperPage.ColorListButton" никогда не используется.
+dotnet_diagnostic.CS0169.severity = warning

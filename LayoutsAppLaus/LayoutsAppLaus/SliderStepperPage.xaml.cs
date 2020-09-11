@@ -1,9 +1,11 @@
-﻿using System;
+﻿using FFImageLoading.Svg.Forms;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,41 +15,55 @@ namespace LayoutsAppLaus
     public partial class SliderStepperPage : ContentPage
     {
         int[] colors = new int[3] { 255, 0, 0 };
-        Frame headerFrame, ColorBox;
-        Label headerName, RedValue, GreenValue, BlueValue;
+        Frame ColorBox;
+        Label RedValue, GreenValue, BlueValue, GitHubLabel;
         Slider RedSlider, GreenSlider, BlueSlider;
         Button RandomColorButton;
+        ToolbarItem RGBButton, HEXButton, ColorListButton;
         public SliderStepperPage()
         {
-            headerName = new Label()
+            Title = "Slider и Stepper";
+
+            RGBButton = new ToolbarItem()
             {
-                Text = "Slider и Stepper",
-                HorizontalTextAlignment = TextAlignment.Start,
-                TextColor = Color.White,
-                FontSize = 20,
-                FontAttributes = FontAttributes.Bold
+                Text = "RGB",
+                Priority = 0,
+                Order = ToolbarItemOrder.Primary
             };
 
-            headerFrame = new Frame()
+            HEXButton = new ToolbarItem()
             {
-                BackgroundColor = Color.FromHex("#2196F3"),
-                Padding = 10,
-                Content = headerName
+                Text = "HEX",
+                Priority = 1,
+                Order = ToolbarItemOrder.Primary
             };
+
+            ColorListButton = new ToolbarItem()
+            {
+                Text= "ЦВЕТА",
+                Priority = 2,
+                Order = ToolbarItemOrder.Primary
+            };
+
+            ToolbarItems.Add(RGBButton);
+            ToolbarItems.Add(HEXButton);
+            ToolbarItems.Add(ColorListButton);
+            RGBButton.Clicked += RGBButton_Clicked;
+            HEXButton.Clicked += HEXButton_Clicked;
 
             RedSlider = new Slider()
             {
                 Minimum = 0,
                 Maximum = 255,
-                Value = 255,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
+                Value = 0,
+                HorizontalOptions = LayoutOptions.FillAndExpand,    
             };
 
             GreenSlider = new Slider()
             {
                 Minimum = 0,
                 Maximum = 255,
-                Value = 15,
+                Value = 0,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
 
@@ -55,7 +71,7 @@ namespace LayoutsAppLaus
             {
                 Minimum = 0,
                 Maximum = 255,
-                Value = 15,
+                Value = 0,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
 
@@ -66,21 +82,21 @@ namespace LayoutsAppLaus
             RedValue = new Label()
             {
                 FontSize = 15,
-                Text = $"Red = {GetHexColor(colors[0])}",
+                Text = $"Green = {GetHexColor(colors[0])} / {colors[0]}",
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
             GreenValue = new Label()
             {
                 FontSize = 15,
-                Text = $"Green = {GetHexColor(colors[1])}",
+                Text = $"Green = {GetHexColor(colors[1])} / {colors[1]}",
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
             BlueValue = new Label()
             {
                 FontSize = 15,
-                Text = $"Blue = {GetHexColor(colors[2])}",
+                Text = $"Blue = {GetHexColor(colors[2])} / {colors[2]}",
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
@@ -97,10 +113,22 @@ namespace LayoutsAppLaus
                 FontSize = 20
             };
 
+            GitHubLabel = new Label()
+            {
+                Text = "GitHub: @blinchk",
+                HorizontalTextAlignment = TextAlignment.Center,
+                Padding = new Thickness(0, 0, 0, 10),
+                FontSize = 15,
+                TextDecorations = TextDecorations.Underline
+            };
+
             RandomColorButton.Clicked += RandomColorButton_Clicked;
+            var tap = new TapGestureRecognizer();
+            tap.Tapped += Tap_Tapped;
+            GitHubLabel.GestureRecognizers.Add(tap);
 
             StackLayout SliderLayout = new StackLayout
-            {
+            {   
                 Padding = new Thickness(15, 30, 15, 30),
                 Children = { RedSlider, RedValue, GreenSlider, GreenValue, BlueSlider, BlueValue },
                 HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -109,12 +137,40 @@ namespace LayoutsAppLaus
 
             StackLayout CommonLayout = new StackLayout
             {
-                Children = { headerFrame, ColorBox, SliderLayout, RandomColorButton}
+                Children = { ColorBox, SliderLayout, RandomColorButton, GitHubLabel }
             };
-
+            
             Content = CommonLayout;
+            GetRandomColor();
             ChangeColor();
         }
+
+        private async void HEXButton_Clicked(object sender, EventArgs e)
+        {
+            string result = await DisplayPromptAsync("HEX", "Введите цвет в HEX: ", "OK", "Отмена", initialValue: "FF, FF, FF");
+        }
+
+        private async void RGBButton_Clicked(object sender, EventArgs e)
+        {
+            string result = await DisplayPromptAsync("RGB", "Введите цвет в RGB: ", "OK", "Отмена", initialValue: "255, 255, 255");
+        }
+
+        private void Tap_Tapped(object sender, EventArgs e)
+        {
+            Label lbl = sender as Label;
+            Frame fr = sender as Frame;
+            if (lbl == GitHubLabel)
+            {
+                Uri uri = new Uri("https://github.com/blinchk");
+                OpenBrowser(uri);
+            }
+            else if (fr == ColorBox)
+            {
+                string clipboardColor;
+            }
+        }
+
+        public async void OpenBrowser(Uri uri) => await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
 
         private void RandomColorButton_Clicked(object sender, EventArgs e)
         {

@@ -10,7 +10,7 @@ namespace LayoutsAppLaus
         {
             InitializeComponent();
 
-            MainPage = new SliderStepperPage();
+            MainPage = new NavigationPage(new SliderStepperPage());
         }
 
         protected override void OnStart()
