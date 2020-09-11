@@ -1,10 +1,4 @@
-﻿using FFImageLoading.Svg.Forms;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -82,21 +76,18 @@ namespace LayoutsAppLaus
             RedValue = new Label()
             {
                 FontSize = 15,
-                Text = $"Green = {GetHexColor(colors[0])} / {colors[0]}",
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
             GreenValue = new Label()
             {
                 FontSize = 15,
-                Text = $"Green = {GetHexColor(colors[1])} / {colors[1]}",
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
             BlueValue = new Label()
             {
                 FontSize = 15,
-                Text = $"Blue = {GetHexColor(colors[2])} / {colors[2]}",
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
@@ -126,6 +117,7 @@ namespace LayoutsAppLaus
             var tap = new TapGestureRecognizer();
             tap.Tapped += Tap_Tapped;
             GitHubLabel.GestureRecognizers.Add(tap);
+            ColorBox.GestureRecognizers.Add(tap);
 
             StackLayout SliderLayout = new StackLayout
             {   
@@ -147,7 +139,7 @@ namespace LayoutsAppLaus
 
         private async void HEXButton_Clicked(object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync("HEX", "Введите цвет в HEX: ", "OK", "Отмена", initialValue: "FF, FF, FF");
+            string result = await DisplayPromptAsync("HEX", "Введите цвет в HEX: ", "OK", "Отмена", initialValue: "#FFFFFF");
         }
 
         private async void RGBButton_Clicked(object sender, EventArgs e)
@@ -166,10 +158,12 @@ namespace LayoutsAppLaus
             }
             else if (fr == ColorBox)
             {
-                string clipboardColor;
+                DependencyService.Get<IMessage>().ShortAlert("Скопировано в буфер обмена.");
+                CopyToClipboard( "#" + GetHexColor(colors[0]) + GetHexColor(colors[1]) + GetHexColor(colors[0]) );
             }
         }
 
+        public async void CopyToClipboard(String text) => await Clipboard.SetTextAsync(text);   
         public async void OpenBrowser(Uri uri) => await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
 
         private void RandomColorButton_Clicked(object sender, EventArgs e)
@@ -228,9 +222,9 @@ namespace LayoutsAppLaus
 
         private void ChangeColor()
         {
-            RedValue.Text = $"Red = {GetHexColor(colors[0])}";
-            GreenValue.Text = $"Green = {GetHexColor(colors[1])}";
-            BlueValue.Text = $"Blue = {GetHexColor(colors[2])}"; // Text values of colors
+            RedValue.Text = $"Red = {GetHexColor(colors[0])} | {colors[0]}";
+            GreenValue.Text = $"Green = {GetHexColor(colors[1])} | {colors[1]}";
+            BlueValue.Text = $"Blue = {GetHexColor(colors[2])} | {colors[2]}"; // Text values of colors
             RedSlider.BackgroundColor = Color.FromRgb(colors[0], 0, 0);
             GreenSlider.BackgroundColor = Color.FromRgb(0, colors[1], 0);
             BlueSlider.BackgroundColor = Color.FromRgb(0, 0, colors[2]); // Color of slider 
